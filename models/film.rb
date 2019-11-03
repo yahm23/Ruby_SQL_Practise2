@@ -45,12 +45,19 @@ class Film
     SqlRunner.run(sql)
   end
 
-  def most_popular_showing
+  def most_pop#ular_showing
     sql = "SELECT * FROM tickets WHERE tickets.film_id = $1"
     values= [@id]
-    tickets_SQL = SqlRunner.run(sql, values)
-    tickets = tickets_SQL.map{|ticket| Ticket.new(ticket)}
-    return tickets
+    tickets = SqlRunner.run(sql, values)
+    screening_ids = tickets.map{|ticket| Ticket.new(ticket).screening_id} #array of screening ids, need a way to take mode
+    # return screening_ids
+    most_pop_id = screening_ids.max_by { |i| screening_ids.count(i) }
+    sql2 = "SELECT * FROM screenings WHERE screenings.id = $1"
+    values2 =[most_pop_id]
+    screening = SqlRunner.run(sql2,values2)
+    popular_time = screening.map{|sc|Screening.new(sc).timing}
+    # return popular_time[0]
+    return "The most popular showing for #{self.title} is #{popular_time[0]}"
   end
 
 

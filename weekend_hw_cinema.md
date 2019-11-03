@@ -30,13 +30,14 @@ It's enough if you can call your methods in pry, don't worry about an interface.
 
 ### Advanced extensions:
   - Create a screenings table that lets us know what time films are showing
-  
+
   - Write a method that finds out what is the most popular time (most tickets sold) for a given film
 
   film method: film1.most_popular_showing will output the time of most pop ie most tix sold
  that means change the ticket class to
 
   - Limit the available tickets for screenings.
+  
   - Add any other extensions you think would be great to have at a cinema!
 
 ### PDA Reminder:
